@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="https://github.com/marcelkanzler/LoginStorage/Resources/Icons/Lock.png" alt="LoginStorage Logo" />
+    <img src="https://raw.githubusercontent.com/marcelkanzler/LoginStorage/master/Login%20storage/Resources/Icons/Lock.png" alt="LoginStorage Logo" />
 </h1>
 
 **Login Storage**
