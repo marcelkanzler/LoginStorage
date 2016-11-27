@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="https://github.com/marcelkanzler/LoginStorage/Resources/Icons/Lock.png" alt="LoginStorage Logo" />
+    <img src="https://raw.githubusercontent.com/marcelkanzler/LoginStorage/master/Login%20storage/Resources/Icons/Lock.png" alt="LoginStorage Logo" height="200" width="200" />
 </h1>
 
 **Login Storage**
@@ -19,6 +19,9 @@ Features
 	 - A master password must be entered when the programm starts
  - Search function
  - Password generator
+<h1 align="center">
+    <img src="https://raw.githubusercontent.com/marcelkanzler/LoginStorage/master/Screenshot.png" alt="LoginStorage Logo" height="287" width="453" />
+</h1>
 
  
 Acknowledgments

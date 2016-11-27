@@ -124,9 +124,9 @@ namespace Login_storage
             this.cb_ShowPassword.AutoSize = true;
             this.cb_ShowPassword.Location = new System.Drawing.Point(565, 41);
             this.cb_ShowPassword.Name = "cb_ShowPassword";
-            this.cb_ShowPassword.Size = new System.Drawing.Size(101, 17);
+            this.cb_ShowPassword.Size = new System.Drawing.Size(106, 17);
             this.cb_ShowPassword.TabIndex = 11;
-            this.cb_ShowPassword.Text = "Show password";
+            this.cb_ShowPassword.Text = "Show passwords";
             this.cb_ShowPassword.UseVisualStyleBackColor = true;
             this.cb_ShowPassword.CheckStateChanged += new System.EventHandler(this.cb_ShowPassword_CheckStateChanged);
             // 
