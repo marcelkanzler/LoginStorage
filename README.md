@@ -1,5 +1,9 @@
 <h1 align="center">
+<<<<<<< HEAD
     <img src="https://raw.githubusercontent.com/marcelkanzler/LoginStorage/master/Login%20storage/Resources/Icons/Lock.png" alt="LoginStorage Logo" height="200" width="200" />
+=======
+    <img src="https://raw.githubusercontent.com/marcelkanzler/LoginStorage/master/Login%20storage/Resources/Icons/Lock.png" alt="LoginStorage Logo" />
+>>>>>>> origin/master
 </h1>
 
 **Login Storage**
