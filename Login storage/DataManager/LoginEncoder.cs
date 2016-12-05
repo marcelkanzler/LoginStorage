@@ -53,10 +53,12 @@ namespace Login_storage.DataManager
 
         private string EncryptString(string plainText, string password)
         {
-            TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider();
-            tdes.IV = new byte[8];
             PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, new byte[0]);
-            tdes.Key = pdb.CryptDeriveKey("3DES", "SHA512", 168, new byte[8]);
+            TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider
+            {
+                IV = new byte[8],
+                Key = pdb.CryptDeriveKey("3DES", "SHA512", 168, new byte[8])
+            };
             MemoryStream ms = new MemoryStream(plainText.Length * 2);
             CryptoStream encStream = new CryptoStream(ms, tdes.CreateEncryptor(), CryptoStreamMode.Write);
             byte[] plainBytes = Encoding.UTF8.GetBytes(plainText);

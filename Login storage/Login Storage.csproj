@@ -122,6 +122,7 @@
     <Compile Include="Forms\StorageForm.Designer.cs">
       <DependentUpon>StorageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Forms\AddLoginDataForm.resx">
       <DependentUpon>AddLoginDataForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -63,10 +63,12 @@ namespace Login_storage.DataManager
 
         public string EncryptString(string encryptedText, string password)
         {
-            TripleDESCryptoServiceProvider des = new TripleDESCryptoServiceProvider();
-            des.IV = new byte[8];
             PasswordDeriveBytes pdb = new PasswordDeriveBytes(password, new byte[0]);
-            des.Key = pdb.CryptDeriveKey("3DES", "SHA512", 168, new byte[8]);
+            TripleDESCryptoServiceProvider des = new TripleDESCryptoServiceProvider
+            {
+                IV = new byte[8],
+                Key = pdb.CryptDeriveKey("3DES", "SHA512", 168, new byte[8])
+            };
             byte[] encryptedBytes = Convert.FromBase64String(encryptedText);
             MemoryStream ms = new MemoryStream(encryptedText.Length);
             CryptoStream decStream = new CryptoStream(ms, des.CreateDecryptor(), CryptoStreamMode.Write);

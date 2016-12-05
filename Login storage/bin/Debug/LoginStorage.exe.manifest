@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LoginStorage.exe" size="245696">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LoginStorage.exe" size="250304">
       <assemblyIdentity name="LoginStorage" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>v/ZMInAom6+l5VW2s/KU+AsZWUgfM6gMkSQ8HftQdt8=</dsig:DigestValue>
+        <dsig:DigestValue>iZ0I7PZ3fKiwghQ+PeTEcdHQxyu9IgMWjaPBRxpmwFo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -75,13 +75,13 @@
       <dsig:DigestValue>TZ4J2OCVPUonTvqwi11NaXdA+BH0k4n5hgRjTsTH5m4=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="LoginStorage.exe.config" size="187">
+  <file name="LoginStorage.exe.config" size="1064">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>xm4bo26HQ0LNVwz1vdPYtzhkpMnp2AI5i+f0b+OahTI=</dsig:DigestValue>
+      <dsig:DigestValue>1TInACx8UnI0OF+gfyPNBeMZMG/e/7IcOSuwahEjg2Y=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

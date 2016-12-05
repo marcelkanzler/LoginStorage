@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_EditData));
             this.btn_Cancel = new System.Windows.Forms.Button();
-            this.bnt_Okay = new System.Windows.Forms.Button();
+            this.btn_Okay = new System.Windows.Forms.Button();
             this.lbl_LastName = new System.Windows.Forms.Label();
             this.txtb_LastName = new System.Windows.Forms.TextBox();
             this.lbl_FirstName = new System.Windows.Forms.Label();
@@ -58,20 +58,20 @@
             this.btn_Cancel.TabIndex = 6;
             this.btn_Cancel.Text = "Cancel";
             this.btn_Cancel.UseVisualStyleBackColor = false;
-            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            this.btn_Cancel.Click += new System.EventHandler(this.Btn_Cancel_Click);
             // 
-            // bnt_Okay
+            // btn_Okay
             // 
-            this.bnt_Okay.BackColor = System.Drawing.Color.Lime;
-            this.bnt_Okay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bnt_Okay.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bnt_Okay.Location = new System.Drawing.Point(405, 243);
-            this.bnt_Okay.Name = "bnt_Okay";
-            this.bnt_Okay.Size = new System.Drawing.Size(75, 23);
-            this.bnt_Okay.TabIndex = 7;
-            this.bnt_Okay.Text = "OK";
-            this.bnt_Okay.UseVisualStyleBackColor = false;
-            this.bnt_Okay.Click += new System.EventHandler(this.bnt_Okay_Click);
+            this.btn_Okay.BackColor = System.Drawing.Color.Lime;
+            this.btn_Okay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Okay.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_Okay.Location = new System.Drawing.Point(405, 243);
+            this.btn_Okay.Name = "btn_Okay";
+            this.btn_Okay.Size = new System.Drawing.Size(75, 23);
+            this.btn_Okay.TabIndex = 7;
+            this.btn_Okay.Text = "OK";
+            this.btn_Okay.UseVisualStyleBackColor = false;
+            this.btn_Okay.Click += new System.EventHandler(this.Btn_Okay_Click);
             // 
             // lbl_LastName
             // 
@@ -89,7 +89,8 @@
             this.txtb_LastName.Name = "txtb_LastName";
             this.txtb_LastName.Size = new System.Drawing.Size(373, 20);
             this.txtb_LastName.TabIndex = 5;
-            this.txtb_LastName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtb_Website_KeyUp);
+            this.txtb_LastName.TextChanged += new System.EventHandler(this.Txtb_TextChanged);
+            this.txtb_LastName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txtb_Website_KeyUp);
             // 
             // lbl_FirstName
             // 
@@ -107,7 +108,8 @@
             this.txtb_FirstName.Name = "txtb_FirstName";
             this.txtb_FirstName.Size = new System.Drawing.Size(373, 20);
             this.txtb_FirstName.TabIndex = 4;
-            this.txtb_FirstName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtb_Website_KeyUp);
+            this.txtb_FirstName.TextChanged += new System.EventHandler(this.Txtb_TextChanged);
+            this.txtb_FirstName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txtb_Website_KeyUp);
             // 
             // lbl_Password
             // 
@@ -126,7 +128,8 @@
             this.txtb_Password.Size = new System.Drawing.Size(373, 20);
             this.txtb_Password.TabIndex = 3;
             this.txtb_Password.UseSystemPasswordChar = true;
-            this.txtb_Password.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtb_Website_KeyUp);
+            this.txtb_Password.TextChanged += new System.EventHandler(this.Txtb_TextChanged);
+            this.txtb_Password.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txtb_Website_KeyUp);
             // 
             // lbl_Username
             // 
@@ -144,7 +147,8 @@
             this.txtb_Username.Name = "txtb_Username";
             this.txtb_Username.Size = new System.Drawing.Size(373, 20);
             this.txtb_Username.TabIndex = 2;
-            this.txtb_Username.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtb_Website_KeyUp);
+            this.txtb_Username.TextChanged += new System.EventHandler(this.Txtb_TextChanged);
+            this.txtb_Username.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txtb_Website_KeyUp);
             // 
             // lbl_Email
             // 
@@ -162,7 +166,8 @@
             this.txtb_Email.Name = "txtb_Email";
             this.txtb_Email.Size = new System.Drawing.Size(373, 20);
             this.txtb_Email.TabIndex = 1;
-            this.txtb_Email.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtb_Website_KeyUp);
+            this.txtb_Email.TextChanged += new System.EventHandler(this.Txtb_TextChanged);
+            this.txtb_Email.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txtb_Website_KeyUp);
             // 
             // lbl_Website
             // 
@@ -180,7 +185,8 @@
             this.txtb_Website.Name = "txtb_Website";
             this.txtb_Website.Size = new System.Drawing.Size(373, 20);
             this.txtb_Website.TabIndex = 0;
-            this.txtb_Website.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtb_Website_KeyUp);
+            this.txtb_Website.TextChanged += new System.EventHandler(this.Txtb_TextChanged);
+            this.txtb_Website.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txtb_Website_KeyUp);
             // 
             // btn_Delete
             // 
@@ -193,7 +199,7 @@
             this.btn_Delete.TabIndex = 26;
             this.btn_Delete.Text = "Delete";
             this.btn_Delete.UseVisualStyleBackColor = false;
-            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
+            this.btn_Delete.Click += new System.EventHandler(this.Btn_Delete_Click);
             // 
             // cb_ShowPassword
             // 
@@ -204,8 +210,8 @@
             this.cb_ShowPassword.TabIndex = 27;
             this.cb_ShowPassword.Text = "Show password";
             this.cb_ShowPassword.UseVisualStyleBackColor = true;
-            this.cb_ShowPassword.CheckStateChanged += new System.EventHandler(this.cb_ShowPassword_CheckStateChanged);
-            this.cb_ShowPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtb_Website_KeyUp);
+            this.cb_ShowPassword.CheckStateChanged += new System.EventHandler(this.Cb_ShowPassword_CheckStateChanged);
+            this.cb_ShowPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txtb_Website_KeyUp);
             // 
             // Form_EditData
             // 
@@ -216,7 +222,7 @@
             this.Controls.Add(this.cb_ShowPassword);
             this.Controls.Add(this.btn_Delete);
             this.Controls.Add(this.btn_Cancel);
-            this.Controls.Add(this.bnt_Okay);
+            this.Controls.Add(this.btn_Okay);
             this.Controls.Add(this.lbl_LastName);
             this.Controls.Add(this.txtb_LastName);
             this.Controls.Add(this.lbl_FirstName);
@@ -232,7 +238,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_EditData";
             this.Text = "Edit data";
-            this.Load += new System.EventHandler(this.Form_EditData_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_EditData_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,7 +247,7 @@
         #endregion
 
         private System.Windows.Forms.Button btn_Cancel;
-        private System.Windows.Forms.Button bnt_Okay;
+        private System.Windows.Forms.Button btn_Okay;
         private System.Windows.Forms.Label lbl_LastName;
         private System.Windows.Forms.TextBox txtb_LastName;
         private System.Windows.Forms.Label lbl_FirstName;

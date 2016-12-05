@@ -18,6 +18,9 @@ namespace Login_storage
         private Storage_Form storage_Form;
         private LoginFormular login_formular;
         private int listPosition = 0;
+        private bool cancelClose = false;
+        private bool dataHasChanged = true;
+
         public Form_EditData()
         {
             InitializeComponent();
@@ -31,6 +34,13 @@ namespace Login_storage
                 this.storage_Form = storage_Form;
                 this.listPosition = listPosition;
                 this.login_formular = lf_data;
+
+                this.txtb_Email.Text = this.login_formular.EMail;
+                this.txtb_FirstName.Text = this.login_formular.FirstName;
+                this.txtb_LastName.Text = this.login_formular.LastName;
+                this.txtb_Password.Text = this.login_formular.Password;
+                this.txtb_Username.Text = this.login_formular.Username;
+                this.txtb_Website.Text = this.login_formular.Website;
                 base.Show();
 
                 //Select the right textbox by the clicked colonne
@@ -41,6 +51,7 @@ namespace Login_storage
                         c.Select();
                     }
                 }
+                dataHasChanged = false;
 
             }
             catch
@@ -51,7 +62,7 @@ namespace Login_storage
 
         }
 
-        private void bnt_Okay_Click(object sender, EventArgs e)
+        private void Btn_Okay_Click(object sender, EventArgs e)
         {
             this.login_formular.EMail = this.txtb_Email.Text;
             this.login_formular.FirstName = this.txtb_FirstName.Text;
@@ -62,50 +73,81 @@ namespace Login_storage
 
             List<LoginFormular> newLoginList = this.storage_Form.GetLoginList();
             this.storage_Form.SetDataGrid(newLoginList);
-            this.btn_Cancel_Click(null, null);
+            this.ForceClose();
         }
 
-        private void btn_Cancel_Click(object sender, EventArgs e)
+        private void Btn_Cancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (dataHasChanged)
+            {
+                DialogResult dlr = MessageBox.Show("Do you wanna overwrite the old login data with the new one?", "Overwrite?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (dlr == DialogResult.Yes)
+                {
+                    Btn_Okay_Click(null, null);
+                }
+                else if (dlr == DialogResult.No)
+                {
+                    ForceClose();
+                }
+            }
+            else
+            {
+                ForceClose();
+            }
+
         }
 
-        private void Form_EditData_Load(object sender, EventArgs e)
-        {
-            this.txtb_Email.Text = this.login_formular.EMail;
-            this.txtb_FirstName.Text = this.login_formular.FirstName;
-            this.txtb_LastName.Text = this.login_formular.LastName;
-            this.txtb_Password.Text = this.login_formular.Password;
-            this.txtb_Username.Text = this.login_formular.Username;
-            this.txtb_Website.Text = this.login_formular.Website;
-        }
-
-        private void txtb_Website_KeyUp(object sender, KeyEventArgs e)
+        private void Txtb_Website_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.btn_Cancel_Click(null, null);
+                this.btn_Cancel.PerformClick();
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                this.bnt_Okay_Click(null, null);
+                this.btn_Okay.PerformClick();
             }
         }
 
-        private void btn_Delete_Click(object sender, EventArgs e)
+        private void Btn_Delete_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Do you want to delete this login data?", "Delete?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
                 this.storage_Form.GetLoginList().RemoveAt(this.listPosition);
                 this.storage_Form.SetDataGrid(this.storage_Form.GetLoginList());
-                this.btn_Cancel_Click(null, null);
+                this.btn_Cancel.PerformClick();
             }
         }
 
-        private void cb_ShowPassword_CheckStateChanged(object sender, EventArgs e)
+        private void Cb_ShowPassword_CheckStateChanged(object sender, EventArgs e)
         {
             txtb_Password.UseSystemPasswordChar = !cb_ShowPassword.Checked;
+        }
+
+        private void ForceClose()
+        {
+            cancelClose = false;
+            this.Close();
+        }
+
+        private void Form_EditData_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (cancelClose)
+            {
+                e.Cancel = false;
+                btn_Cancel.PerformClick();
+            }
+            e.Cancel = cancelClose;
+        }
+
+        private void Txtb_TextChanged(object sender, EventArgs e)
+        {
+
+            if (dataHasChanged == false)
+            {
+                dataHasChanged = true;
+            }
         }
     }
 }

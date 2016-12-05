@@ -15,6 +15,8 @@ namespace Login_storage
     public partial class Form_AddLoginData : Form
     {
         private Storage_Form storageForm;
+        private bool cancelClose = true;
+
         public Form_AddLoginData()
         {
             InitializeComponent();
@@ -25,15 +27,44 @@ namespace Login_storage
         {
             this.storageForm = storageForm;
             this.cb_ShowPassword.Checked = storageForm.cb_ShowPassword.Checked;
-            
+
         }
 
-        private void btn_Cancel_Click(object sender, EventArgs e)
+        private void Btn_Cancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            bool hasChanged = false;
+            //Stays false if nothing has written in all TextBoxes
+            foreach (Control c in this.Controls)
+            {
+                if (c is TextBox)
+                {
+                    TextBox tb = c as TextBox;
+                    if (tb.Text != "")
+                    {
+                        hasChanged = true;
+                        break;
+                    }
+                }
+            }
+            if (hasChanged)
+            {
+                DialogResult dlr = MessageBox.Show("Do you wanna add the new login data to your storage?", "Add to storage?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (dlr == DialogResult.Yes)
+                {
+                    btn_Okay.PerformClick();
+                }
+                else if (dlr == DialogResult.No)
+                {
+                    ForceClose();
+                }
+            }
+            else
+            {
+                ForceClose();
+            }
         }
 
-        private void bnt_Okay_Click(object sender, EventArgs e)
+        private void Btn_Okay_Click(object sender, EventArgs e)
         {
             List<LoginFormular> loginList = this.storageForm.GetLoginList();
             if (loginList == null)
@@ -45,37 +76,38 @@ namespace Login_storage
                 MessageBox.Show("A website must be specified!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            LoginFormular loginFormular = new LoginFormular();
-            loginFormular.Website = txtb_Website.Text;
-            loginFormular.EMail = txtb_Email.Text;
-            loginFormular.Username = txtb_Username.Text;
-            loginFormular.Password = txtb_Password.Text;
-            loginFormular.FirstName = txtb_FirstName.Text;
-            loginFormular.LastName = txtb_LastName.Text;
+            LoginFormular loginFormular = new LoginFormular
+            {
+                Website = txtb_Website.Text,
+                EMail = txtb_Email.Text,
+                Username = txtb_Username.Text,
+                Password = txtb_Password.Text,
+                FirstName = txtb_FirstName.Text,
+                LastName = txtb_LastName.Text
+            };
             loginList.Add(loginFormular);
 
             this.storageForm.SetDataGrid(loginList);
             this.storageForm.UpdateMatchingLoginFormulars();
-            this.Close();
+            ForceClose();
         }
 
-        private void txtb_Website_KeyUp(object sender, KeyEventArgs e)
+        private void Txtb_Website_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.btn_Cancel_Click(null, null);
+                this.Btn_Cancel_Click(null, null);
             }
             else if (e.KeyCode == Keys.Enter)
             {
                 if (this.txtb_Website.Text != "")
                 {
-                    this.bnt_Okay_Click(null, null);
+                    this.btn_Okay.PerformClick();
                 }
             }
         }
 
-        private void cb_ShowPassword_CheckStateChanged(object sender, EventArgs e)
+        private void Cb_ShowPassword_CheckStateChanged(object sender, EventArgs e)
         {
             if (!this.cb_ShowPassword.Checked == true)
             {
@@ -87,7 +119,7 @@ namespace Login_storage
             }
         }
 
-        private void pb_rnd_Click(object sender, EventArgs e)
+        private void Pb_rnd_Click(object sender, EventArgs e)
         {
             String sRnd = "";
             String usingChars = "";
@@ -111,6 +143,22 @@ namespace Login_storage
                 }
             }
             this.txtb_Password.Text = sRnd;
+        }
+
+        private void ForceClose()
+        {
+            cancelClose = false;
+            this.Close();
+        }
+
+        private void Form_AddLoginData_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (cancelClose)
+            {
+                e.Cancel = false;
+                btn_Cancel.PerformClick();
+            }
+            e.Cancel = cancelClose;
         }
     }
 }

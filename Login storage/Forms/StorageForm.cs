@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LoginStorage.Properties;
 
 namespace Login_storage
 {
@@ -30,7 +31,7 @@ namespace Login_storage
 
         #region Event methods
 
-        private void btn_Save_Click(object sender, EventArgs e)
+        private void Btn_Save_Click(object sender, EventArgs e)
         {
             if (loginEncoder.Save(GetLoginList()))
             {
@@ -41,12 +42,12 @@ namespace Login_storage
                 DialogResult dialogResult = MessageBox.Show("Errors were detected while saving file! Do you wanna try it again?", "Save", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    btn_Save_Click(null, null);
+                    btn_Save.PerformClick();
                 }
             }
         }
 
-        private void btn_Add_Click(object sender, EventArgs e)
+        private void Btn_Add_Click(object sender, EventArgs e)
         {
             Form_AddLoginData activeAddLoginData = new Form_AddLoginData();
             activeAddLoginData.SetStorageForm(this);
@@ -56,7 +57,7 @@ namespace Login_storage
 
 
 
-        private void dataGrid_Logins_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGrid_Logins_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             // If the heading of a column is clicked, the method should be aborted.
             if (e.RowIndex < 0)
@@ -97,7 +98,7 @@ namespace Login_storage
             }
         }
 
-        private void cbox_SearchMode_SelectedIndexChanged(object sender, EventArgs e)
+        private void Cbox_SearchMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateMatchingLoginFormulars();
 
@@ -118,7 +119,7 @@ namespace Login_storage
             }
 
         }
-        private void txtb_Search_TextChanged(object sender, EventArgs e)
+        private void Txtb_Search_TextChanged(object sender, EventArgs e)
         {
             UpdateMatchingLoginFormulars();
         }
@@ -130,13 +131,15 @@ namespace Login_storage
                 DialogResult dialogResult = MessageBox.Show("The login list has been modified. Save changes?", "Save changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    btn_Save_Click(null, null);
+                    Btn_Save_Click(null, null);
                     MessageBox.Show("File successfully  saved!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SaveWindowInfos();
                     Application.Exit();
                 }
                 else if (dialogResult == DialogResult.No)
                 {
                     btn_Save.Enabled = false;
+                    SaveWindowInfos();
                     Application.Exit();
                 }
                 else
@@ -146,11 +149,34 @@ namespace Login_storage
             }
             else
             {
+                SaveWindowInfos();
                 Application.Exit();
             }
         }
 
-        private void cb_ShowPassword_CheckStateChanged(object sender, EventArgs e)
+        private void SaveWindowInfos()
+        {
+            Settings.Default.WindowLocation = this.Location;
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                Settings.Default.WindowSize = this.Size;
+            }
+            else
+            {
+                Settings.Default.WindowSize = this.RestoreBounds.Size;
+            }
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                Settings.Default.WindowMaximize = true;
+            } else
+            {
+                Settings.Default.WindowMaximize = false;
+            }
+            Settings.Default.Save();
+        }
+
+
+        private void Cb_ShowPassword_CheckStateChanged(object sender, EventArgs e)
         {
             if (clbox_SearchMode.SelectedIndex == 4)
             {
@@ -163,7 +189,7 @@ namespace Login_storage
             UpdateMatchingLoginFormulars();
         }
 
-        private void dataGrid_Logins_KeyUp(object sender, KeyEventArgs e)
+        private void DataGrid_Logins_KeyUp(object sender, KeyEventArgs e)
         {
             if (this.cb_ShowPassword.Checked == false)
             {
@@ -171,16 +197,38 @@ namespace Login_storage
                 {
                     if (dataGrid_Logins.CurrentCell.ColumnIndex == 3)
                     {
-                        Clipboard.SetText(this.GetLoginList()[dataGrid_Logins.CurrentCell.RowIndex].Password);
+                        Clipboard.SetText(GetLoginList()[dataGrid_Logins.CurrentCell.RowIndex].Password);
                     }
                 }
+            }
+        }
+
+        private void Storage_Form_Load(object sender, EventArgs e)
+        {
+            if (Settings.Default.WindowLocation != null)
+            {
+                this.Location = Settings.Default.WindowLocation;
+            }
+            if (Settings.Default.WindowSize != null)
+            {
+                this.Size = Settings.Default.WindowSize;
+            }
+            else
+            {
+                Size maxSize = Screen.FromControl(this).Bounds.Size;
+                Size newSize = new Size(Convert.ToInt32(maxSize.Width / 1.5), Convert.ToInt32(maxSize.Height / 1.5));
+                this.Size = newSize;
+            }
+            if (Settings.Default.WindowMaximize)
+            {
+                this.WindowState = FormWindowState.Maximized;
             }
         }
         #endregion
 
         #region Other methods
 
-        public void setLoginEncoder(string username, string password)
+        public void SetLoginEncoder(string username, string password)
         {
             this.loginEncoder = new LoginEncoder(username, password);
         }
@@ -240,7 +288,5 @@ namespace Login_storage
             this.dataGrid_Logins.DataSource = this.searchManage.GetMatchingLoginFormulars();
         }
         #endregion
-
-
     }
 }

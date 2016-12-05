@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.textBox_Username = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -36,6 +37,7 @@
             this.pB_Remember = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonLogin = new System.Windows.Forms.Button();
+            this.tt_Warning = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pB_Remember)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +47,7 @@
             this.textBox_Username.Name = "textBox_Username";
             this.textBox_Username.Size = new System.Drawing.Size(169, 20);
             this.textBox_Username.TabIndex = 0;
-            this.textBox_Username.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Username_KeyPress);
+            this.textBox_Username.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_Username_KeyPress);
             // 
             // label1
             // 
@@ -74,7 +76,7 @@
             this.textBox_Password.PasswordChar = '•';
             this.textBox_Password.Size = new System.Drawing.Size(169, 20);
             this.textBox_Password.TabIndex = 1;
-            this.textBox_Password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Password_KeyDown);
+            this.textBox_Password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_Password_KeyDown);
             // 
             // pB_Remember
             // 
@@ -85,7 +87,7 @@
             this.pB_Remember.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pB_Remember.TabIndex = 4;
             this.pB_Remember.TabStop = false;
-            this.pB_Remember.Click += new System.EventHandler(this.pB_Remember_Click);
+            this.pB_Remember.Click += new System.EventHandler(this.Pb_Remember_Click);
             // 
             // label3
             // 
@@ -105,7 +107,12 @@
             this.buttonLogin.TabIndex = 3;
             this.buttonLogin.Text = "Sign in";
             this.buttonLogin.UseVisualStyleBackColor = true;
-            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
+            this.buttonLogin.Click += new System.EventHandler(this.ButtonLogin_Click);
+            // 
+            // tt_Warning
+            // 
+            this.tt_Warning.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.tt_Warning.ToolTipTitle = "Info";
             // 
             // LoginForm
             // 
@@ -144,6 +151,7 @@
         private System.Windows.Forms.PictureBox pB_Remember;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonLogin;
+        private System.Windows.Forms.ToolTip tt_Warning;
     }
 }
 

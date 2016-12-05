@@ -11,7 +11,7 @@ namespace Login_storage.DataManager
     {
         private Storage_Form storageForm;
 
-        private int getSearchMode()
+        private int GetSearchMode()
         {
             return this.storageForm.clbox_SearchMode.SelectedIndex;
         }
@@ -35,9 +35,8 @@ namespace Login_storage.DataManager
             {
                 LoginFormular loginFormular = loginList[i];
                 String comparison = "";
-                switch (getSearchMode())
+                switch (GetSearchMode())
                 {
-
                     case 0:
                         comparison = loginFormular.Website;
                         break;

@@ -22,7 +22,7 @@ namespace Login_storage
             InitializeComponent();
         }
 
-        private void pB_Remember_Click(object sender, EventArgs e)
+        private void Pb_Remember_Click(object sender, EventArgs e)
         {
             if (rememberMe)
             {
@@ -46,11 +46,10 @@ namespace Login_storage
             }
         }
 
-        private void buttonLogin_Click(object sender, EventArgs e)
+        private void ButtonLogin_Click(object sender, EventArgs e)
         {
             CheckPassword();
         }
-
 
         private void CheckPassword()
         {
@@ -73,7 +72,7 @@ namespace Login_storage
             if (loginDecoder.IsCorrectPassword())
             {
                 Storage_Form storage_From = new Storage_Form();
-                storage_From.setLoginEncoder(username, password);
+                storage_From.SetLoginEncoder(username, password);
                 List<LoginFormular> loginList = loginDecoder.GetLoginList();
                 if (loginDecoder.GetLoginList() != null)
                 {
@@ -93,14 +92,9 @@ namespace Login_storage
                 MessageBox.Show("Wrong username or password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBox_Password.Text = "";
             }
-
         }
 
-
-
-
-
-        private void textBox_Password_KeyDown(object sender, KeyEventArgs e)
+        private void TextBox_Password_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -108,15 +102,14 @@ namespace Login_storage
             }
         }
 
-
-        private void textBox_Username_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBox_Username_KeyPress(object sender, KeyPressEventArgs e)
         {
             string textbText = e.KeyChar.ToString();
             if (textbText.Contains("\\") || textbText.Contains("/") || textbText.Contains("?") || textbText.Contains(":") || textbText.Contains(" ")
                 || textbText.Contains("*") || textbText.Contains("<") || textbText.Contains(">") || textbText.Contains("|") || textbText.Contains("\""))
             {
 
-                MessageBox.Show("The Username cannot contain the following characters: \n\\/?:*< >|\"", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tt_Warning.Show("The Username cannot contain the following characters: \n\\/?:*< >|\"", textBox_Username, 5000);
                 e.KeyChar = new char();
             }
         }
