@@ -43,7 +43,7 @@ namespace Login_storage
                 this.txtb_Website.Text = this.login_formular.Website;
                 base.Show();
 
-                //Select the right textbox by the clicked colonne
+                //Select the right textbox by the clicked column
                 foreach (Control c in this.Controls)
                 {
                     if (c.TabIndex == columnIndex)

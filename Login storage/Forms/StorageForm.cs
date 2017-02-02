@@ -205,6 +205,7 @@ namespace Login_storage
 
         private void Storage_Form_Load(object sender, EventArgs e)
         {
+            txtb_Search.Select();
             if (Settings.Default.WindowLocation != null)
             {
                 this.Location = Settings.Default.WindowLocation;
